@@ -19,7 +19,7 @@ const response$ = paramsAndState$.pipe(
 );
 ```
 #### Reason
-"The problem is that async causes switchMap to return an Observable of whatever you return. So you returned an Observable<Observable<never>> which then emitted an Observable<never> to your success callback." - https://stackoverflow.com/a/56148440 -
+"The problem is that async causes switchMap to return an Observable of whatever you return. So you returned an `Observable<Observable<never>>` which then emitted an `Observable<never>` to your success callback." - https://stackoverflow.com/a/56148440 -
 
 #### Fix
 Don't directly pass `async` function to switchMap directly, always pass a normal function and return promise, iterable, observable, etc.
