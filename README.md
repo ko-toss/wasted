@@ -27,3 +27,19 @@ Don't pass `async` function to switchMap directly, always pass a normal function
 #### Reference
 https://stackoverflow.com/a/56148440
 
+
+
+## Config
+#### Event
+`Parsing error: "parserOptions.project" has been set for @typescript-eslint/parser.`
+
+#### Fix
+```
+# tsconfig.json
+"include": [
+    ".eslintrc.js",
+ ]
+```
+
+#### Reference
+https://stackoverflow.com/a/61993196
