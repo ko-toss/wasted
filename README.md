@@ -28,6 +28,14 @@ Don't pass `async` function to switchMap directly, always pass a normal function
 https://stackoverflow.com/a/56148440
 
 
+## Components/Elements
+#### Event
+`<meta charset="utf-8" />` causes `TS2322: Type 'string' is not assignable to type 'T'` error in React
+
+#### Fix
+use `<meta httpEquiv="Content-Type" content="text/html; charset=utf-8" />`
+
+
 
 ## Config
 #### Event
