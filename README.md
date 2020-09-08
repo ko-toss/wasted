@@ -3,6 +3,7 @@ Unexpected things that cost me time.
 
 ## RxJS
 ### Passing async function directly to `swtichMap` causes unsubscription on error.
+##### NoobLevel: 1
 #### Event
 If below code errors once the subscription to response$ gets lost, even with `catchError`.
 ```ts
@@ -27,6 +28,36 @@ Don't pass `async` function to switchMap directly, always pass a normal function
 #### Reference
 https://stackoverflow.com/a/56148440
 
+
+### TypesScript checks node_modules 
+##### NoobLevel: 9
+#### Event
+`tsc --noEmit` spits some crazy errors, something like below;
+```
+node_modules/rxjs/src/internal/Subscription.ts:67:5 - error TS2322: Type 'null' is not assignable to type 'SubscriptionLike[]'.
+
+67     this._subscriptions = null;
+       ~~~~~~~~~~~~~~~~~~~
+
+node_modules/rxjs/src/internal/Subscription.ts:108:22 - error TS2454: Variable 'errors' is used before being assigned.
+
+108             errors = errors || [];
+                         ~~~~~~
+
+.... LOT MORE LOGS OMITTED ....
+
+node_modules/rxjs/src/internal/util/toSubscriber.ts:17:14 - error TS7053: Element implicitly has an 'any' type because expression of type 'string | symbol' can't be used to index type 'NextObserver<T> | ErrorObserver<T> | CompletionObserver<T> | ((value: T) => void)'.
+  No index signature with a parameter of type 'string' was found on type 'NextObserver<T> | ErrorObserver<T> | CompletionObserver<T> | ((value: T) => void)'.
+
+17       return nextOrObserver[rxSubscriberSymbol]();
+                ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+```
+#### Reason
+Imported node_modules uncompiled src directory. eg `import { ObservableInput } from 'rxjs/src/internal/types';`
+Or rather relied on IDE's auto import (probably a bug).
+
+#### Fix
+Import from compiled source. eg `import {ObservableInput} from 'rxjs'`
 
 ## Components/Elements
 #### Event
