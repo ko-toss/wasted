@@ -4,7 +4,7 @@ Unexpected things that cost me time.
 ## RxJS
 ### Passing async function directly to `swtichMap` causes unsubscription on error.
 ##### NoobLevel: 1
-#### Event
+### Event
 If below code errors once the subscription to response$ gets lost, even with `catchError`.
 ```ts
 const response$ = paramsAndState$.pipe(
@@ -31,7 +31,7 @@ https://stackoverflow.com/a/56148440
 
 ### TypesScript checks node_modules 
 ##### NoobLevel: 9
-#### Event
+### Event
 `tsc --noEmit` spits some crazy errors, something like below;
 ```
 node_modules/rxjs/src/internal/Subscription.ts:67:5 - error TS2322: Type 'null' is not assignable to type 'SubscriptionLike[]'.
@@ -60,7 +60,7 @@ Or rather relied on IDE's auto import (probably a bug).
 Import from compiled source. eg `import {ObservableInput} from 'rxjs'`
 
 ## Components/Elements
-#### Event
+### Event
 `<meta charset="utf-8" />` causes `TS2322: Type 'string' is not assignable to type 'T'` error in React
 
 #### Fix
@@ -69,7 +69,7 @@ use `<meta httpEquiv="Content-Type" content="text/html; charset=utf-8" />`
 
 
 ## Config
-#### Event
+### Event
 `Parsing error: "parserOptions.project" has been set for @typescript-eslint/parser.`
 
 #### Fix
@@ -82,3 +82,17 @@ use `<meta httpEquiv="Content-Type" content="text/html; charset=utf-8" />`
 
 #### Reference
 https://stackoverflow.com/a/61993196
+
+
+### Event
+Warning: An update to IndexPage inside a test was not wrapped in act(...).
+
+#### Fix
+```ts
+await waitFor(() => {
+    expect(getByText("David")).toBeInTheDocument();
+});
+```
+
+#### Refrence
+https://medium.com/@davidwcai/react-testing-library-and-the-not-wrapped-in-act-errors-491a5629193b
