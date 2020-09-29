@@ -96,3 +96,23 @@ await waitFor(() => {
 
 #### Refrence
 https://medium.com/@davidwcai/react-testing-library-and-the-not-wrapped-in-act-errors-491a5629193b
+
+## State management
+### Event
+Below, handleChanged callback does not change `value` of the input. NO error logs
+```tsx
+class Data { constructor(public content: string) {} }
+export function IndexPage() {
+  const [data, setData] = useState([[new Data('hi')]])
+  const handleChanged = useCallback((event: ChangeEvent<HTMLInputElement>) => {
+    setData(data => produce(data, draft => {
+      draft[0][0].content = event.target.value
+    }))
+  }, [])
+  return <input value={data[0][0].content} onChange={handleChanged} />
+}
+```
+
+#### Fix
+Do not pass `class` to immer. Use POJO, instead. When pure class is passed to immer error will show. 
+However when class is nested inside array no error will happen
