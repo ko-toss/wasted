@@ -69,6 +69,19 @@ use `<meta httpEquiv="Content-Type" content="text/html; charset=utf-8" />`
 
 
 ## Config
+
+### Event
+Make IDE auto import, default to import using relative path in some folders, and use tsconfig path mapping in other folders.
+
+### Fix
+```
+WebStorm > Code Style > Typescript > Imports > Use path mapping from tsconfig.json: Only in files outside specified paths.
+Do not import exactly from: `projects/*/store/**`
+```
+Above will use relative path for importing files from projects/*/store/**
+
+---
+
 ### Event
 `Parsing error: "parserOptions.project" has been set for @typescript-eslint/parser.`
 
