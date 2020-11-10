@@ -27,7 +27,7 @@ Don't pass `async` function to switchMap directly, always pass a normal function
 
 #### Reference
 https://stackoverflow.com/a/56148440
-
+---
 
 ### TypesScript checks node_modules 
 ##### NoobLevel: 9
@@ -59,6 +59,8 @@ Or rather relied on IDE's auto import (probably a bug).
 #### Fix
 Import from compiled source. eg `import {ObservableInput} from 'rxjs'`
 
+---
+
 ## Components/Elements
 ### Event
 `<meta charset="utf-8" />` causes `TS2322: Type 'string' is not assignable to type 'T'` error in React
@@ -75,10 +77,11 @@ Make IDE auto import, default to import using relative path in some folders, and
 
 ### Fix
 ```
-WebStorm > Code Style > Typescript > Imports > Use path mapping from tsconfig.json: Only in files outside specified paths.
-Do not import exactly from: `projects/*/store/**`
+WebStorm > Code Style > Typescript > Imports > 
+Use path mapping from tsconfig.json: Only in files outside specified paths.
+Do not import exactly from: ,projects/*/store/**
 ```
-Above will use relative path for importing files from projects/*/store/**
+Above will use relative path for importing files from `projects/*/store/**`
 
 ---
 
@@ -109,6 +112,8 @@ await waitFor(() => {
 
 #### Refrence
 https://medium.com/@davidwcai/react-testing-library-and-the-not-wrapped-in-act-errors-491a5629193b
+
+---
 
 ## State management
 ### Event
